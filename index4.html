@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Hotdog</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size:clamp(1.5rem, 2vw, 3rem);
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            color: #e94d58;
+            background-color: beige;
+        }
+
+        .container {
+            text-align: center; 
+        }
+
+        .container > span{
+            animation: glow 0s ease-in-out infinite;
+        }
+
+        @keyframes glow{
+            0%, 100%{
+            color: white;
+            text-shadow: 0 0 22px rgb(43, 248, 255) , 0 0 70px rgb(0, 255, 255)
+            }
+            10%, 90%{
+            color:rgb(27, 27, 27);
+            text-shadow: none;
+            }
+        }
+
+
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        </style>
+
+    </head>
+
+
+    <body>
+        <div class="container" >
+            <video autoplay muted loop id="video-bg">
+                <source type="video/mp4">
+            </video>
+            <span id="lyrics"></span>
+        </div>
+        
+        <script> 
+        document.addEventListener("DOMContentLoaded", function () {
+    const lyrics = [
+        "You go beyond simply being my favorite",
+        "You are my favorite person to embrace,",
+        "Makes me feel loved and safe.",
+        "You are my favorite voice to hear,",
+        "So gentle and reassuring",
+        "You are my favorite beam of joy,",
+        "So corny and sincere.",
+        "You are my favorite emotion,",
+        "Memory,",
+        "Though",
+        "Seatmate",
+        "Classmate",
+        "Lover",
+        "Dream",
+        "You are my favorite everything. ",
+        "YOU ARE MY EVERYTHING..."
+    ];
+
+    const delay = 50;
+    const lyricsElement = document.getElementById("lyrics");
+
+    async function displayLyrics() {
+        for (const line of lyrics) {
+            for (const char of line) {
+                const charElement = document.createElement("span"); 
+                charElement.textContent = char;
+                charElement.style.animation = "glow 2s ease-in-out"; 
+                lyricsElement.appendChild(charElement); 
+
+                await new Promise((resolve) => setTimeout(resolve, delay));
+
+                
+                charElement.style.animation = "";
+            }
+
+            lyricsElement.appendChild(document.createElement("br")); 
+
+            await new Promise((resolve) => setTimeout(resolve, delay * 10));
+
+            lyricsElement.textContent = "";
+
+            await new Promise((resolve) => setTimeout(resolve, delay * 10));
+        }
+
+        setTimeout(function () {
+            window.location.href = "index5.html";
+        }, 700);
+    }
+    
+    displayLyrics();
+});
+        </script>
+    </body>
+</html>
